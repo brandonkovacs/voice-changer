@@ -3,6 +3,9 @@
 [Japanese](/README_ja.md) [Korean](/README_ko.md)
 
 ## What's New!
+- v.1.5.3.18
+  - New Feature: FCPE
+  - Easy-VC (experimental)
 - v.1.5.3.17b
   - bugfix:
     - clear setting
@@ -71,7 +74,7 @@ It can be used in two main ways, in order of difficulty:
 
 - You can download and run executable binaries.
 
-- Please see [here](tutorials/tutorial_rvc_en_latest.md) for the tutorial. ([troubule shoot](https://github.com/w-okada/voice-changer/blob/master/tutorials/trouble_shoot_communication_ja.md))
+- Please see [here](tutorials/tutorial_rvc_en_latest.md) for the tutorial. ([trouble shoot](https://github.com/w-okada/voice-changer/blob/master/tutorials/trouble_shoot_communication_ja.md))
 
 - It's now easy to try it out on [Google Colaboratory](https://github.com/w-okada/voice-changer/blob/master/Realtime_Voice_Changer_on_Colab.ipynb) (requires a ngrok account). You can launch it from the 'Open in Colab' button in the top left corner.
 
@@ -96,6 +99,9 @@ It can be used in two main ways, in order of difficulty:
 
 | Version     | OS  | Framework                             | link                                                                | support VC                                                                          | size   |
 | ----------- | --- | ------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------ |
+| v.1.5.3.18  | mac | ONNX(cpu), PyTorch(cpu,mps)           | N/A                                                                 | MMVC v.1.5.x, MMVC v.1.3.x, so-vits-svc 4.0, RVC                                    | 797MB  |
+|             | win | ONNX(cpu,cuda), PyTorch(cpu,cuda)     | [hugging face](https://huggingface.co/wok000/vcclient000/tree/main) | MMVC v.1.5.x, MMVC v.1.3.x, so-vits-svc 4.0, RVC, DDSP-SVC, Diffusion-SVC, Beatrice | 3240MB |
+|             | win | ONNX(cpu,DirectML), PyTorch(cpu,cuda) | [hugging face](https://huggingface.co/wok000/vcclient000/tree/main) | MMVC v.1.5.x, MMVC v.1.3.x, so-vits-svc 4.0, RVC, DDSP-SVC, Diffusion-SVC, Beatrice | 3125MB |
 | v.1.5.3.17b | mac | ONNX(cpu), PyTorch(cpu,mps)           | [hugging face](https://huggingface.co/wok000/vcclient000/tree/main) | MMVC v.1.5.x, MMVC v.1.3.x, so-vits-svc 4.0, RVC                                    | 797MB  |
 |             | win | ONNX(cpu,cuda), PyTorch(cpu,cuda)     | [hugging face](https://huggingface.co/wok000/vcclient000/tree/main) | MMVC v.1.5.x, MMVC v.1.3.x, so-vits-svc 4.0, RVC, DDSP-SVC, Diffusion-SVC, Beatrice | 3240MB |
 |             | win | ONNX(cpu,DirectML), PyTorch(cpu,cuda) | [hugging face](https://huggingface.co/wok000/vcclient000/tree/main) | MMVC v.1.5.x, MMVC v.1.3.x, so-vits-svc 4.0, RVC, DDSP-SVC, Diffusion-SVC, Beatrice | 3125MB |
