@@ -28,6 +28,9 @@ export const ExportController = () => {
         setExporting(true);
         updateProgress(totalNum, 0);
 
+        const rvcMetadataFile = "metadata.csv"
+        let rvcMetadataText = ""
+
         for (let i = 0; i < Object.values(corpusDataState.corpusTextData).length; i++) {
             const targetCorpus = Object.values(corpusDataState.corpusTextData)[i]
             const prefix = targetCorpus.wavPrefix
@@ -43,7 +46,10 @@ export const ExportController = () => {
                 const fileName = generateWavFileName(prefix, j);
                 const textFileName = generateTextFileName(prefix, j)
                 const textData = targetCorpus.text[j]
-                const textHiraData = targetCorpus.text_hira[j]
+
+                // RVC Metadata
+                rvcMetadataText = rvcMetadataText.concat(textFileName, "|", textData, "\n")
+
                 // 生データ
                 zip.file(`00_myvoice/raw/${fileName}`, userData.micWavBlob);
 
@@ -73,11 +79,14 @@ export const ExportController = () => {
                 zip.file(`00_myvoice/wav/${fileName}`, vfWav24KhzTrim);
 
                 // TXT
-                zip.file(`00_myvoice/text/${textFileName}`, textHiraData);
                 zip.file(`00_myvoice/readable_text/${textFileName}`, textData);
             }
 
         }
+
+        // Add RVC Metadata to zip file
+        zip.file(`00_myvoice/${rvcMetadataFile}`, rvcMetadataText);
+
 
         // for (let i = 0; i < corpus.text.length; i++) {
         //     const userData = await appStateStorageState.loadUserData(title, prefix, i)
