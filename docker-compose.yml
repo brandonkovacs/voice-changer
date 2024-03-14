@@ -29,7 +29,7 @@ services:
               count: all
               capabilities: [gpu]
     command:
-      - --https false
+      - --https true
       - --content_vec_500 pretrain/checkpoint_best_legacy_500.pt
       - --content_vec_500_onnx pretrain/content_vec_500.onnx
       - --content_vec_500_onnx_on true
