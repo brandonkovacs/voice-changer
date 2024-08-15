@@ -1,7 +1,7 @@
 version: "3.8"
 services:
 
-  vcclient:
+  voice-changer:
     image: brandonkovacs/voice-changer:latest
     container_name: voice-changer
     build:
@@ -48,7 +48,7 @@ services:
       - LOCAL_UID=1000
       - LOCAL_GID=1000
 
-  recorder:
+  voice-recorder:
     image: brandonkovacs/voice-recorder:latest
     container_name: voice-recorder
     build:
