@@ -2,8 +2,8 @@ version: "3.8"
 services:
 
   vcclient:
-    image: voice-changer/vcclient:latest
-    container_name: vcclient
+    image: brandonkovacs/voice-changer:latest
+    container_name: voice-changer
     build:
       context: ./docker_vcclient
       dockerfile: ../docker_vcclient/Dockerfile
@@ -43,14 +43,14 @@ services:
       - --model_dir model_dir
       - --samples samples.json
     environment:
-      - EX_IP=vcclient
+      - EX_IP=voice-changer
       - EX_PORT=18888
       - LOCAL_UID=1000
       - LOCAL_GID=1000
 
   recorder:
-    image: voice-changer/recorder:latest
-    container_name: recorder
+    image: brandonkovacs/voice-recorder:latest
+    container_name: voice-recorder
     build:
       context: ./recorder
       dockerfile: ../recorder/Dockerfile
