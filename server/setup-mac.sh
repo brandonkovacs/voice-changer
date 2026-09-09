@@ -11,13 +11,21 @@ export CONDA_PLUGINS_AUTO_ACCEPT_TOS=yes
 echo "=== Voice-Changer macOS Setup ==="
 echo ""
 
-# Check if conda is available
+# Check if conda is available. Not being on PATH does not mean it is not
+# installed - reuse an existing install rather than failing on the installer's
+# "prefix already exists" error.
 if ! command -v conda &> /dev/null; then
-    echo "Error: conda not found. Installing..."
-    curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
-    bash ./Miniconda3-latest-MacOSX-arm64.sh -p $HOME/miniconda3
-    source ~/miniconda3/bin/activate
-    conda init --all
+    if [ -f "$HOME/miniconda3/bin/activate" ]; then
+        echo "Found existing Miniconda at $HOME/miniconda3, activating..."
+        source "$HOME/miniconda3/bin/activate"
+    else
+        echo "conda not found. Installing Miniconda..."
+        curl -fL -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+        bash ./Miniconda3-latest-MacOSX-arm64.sh -b -p "$HOME/miniconda3"
+        source ~/miniconda3/bin/activate
+        conda init --all
+        rm Miniconda3-latest-MacOSX-arm64.sh
+    fi
 fi
 
 # Initialize conda for bash

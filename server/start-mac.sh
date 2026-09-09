@@ -11,6 +11,13 @@ PORT="${PORT:-18888}"
 echo "=== Voice-Changer macOS Server ==="
 echo ""
 
+# If conda was just installed by setup-mac.sh, `conda init` has not taken
+# effect in this shell yet - source it directly so this still works in the
+# same terminal the setup ran in.
+if ! command -v conda &> /dev/null && [ -f "$HOME/miniconda3/bin/activate" ]; then
+    source "$HOME/miniconda3/bin/activate"
+fi
+
 # Initialize conda for bash
 eval "$(conda shell.bash hook)"
 
