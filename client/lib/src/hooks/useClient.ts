@@ -160,7 +160,10 @@ export const useClient = (props: UseClientProps): ClientState => {
             if (!props.audioContext) {
                 return;
             }
-            const voiceChangerClient = new VoiceChangerClient(props.audioContext, true, {
+            // vfEnable=false: VoiceFocus downloads ~950KB of assets from static.sdkassets.chime.aws
+            // on every client init, which makes startup fail offline. It only feeds the "Sup2"
+            // noise suppression toggle, which is off by default.
+            const voiceChangerClient = new VoiceChangerClient(props.audioContext, false, {
                 notifySendBufferingTime: (val: number) => {
                     setBufferingTime(val);
                 },

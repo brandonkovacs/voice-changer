@@ -2,7 +2,6 @@ import sys
 
 from distutils.util import strtobool
 from datetime import datetime
-import socket
 import platform
 import os
 import argparse
@@ -233,11 +232,7 @@ if __name__ == "__main__":
             printMessage(f"http://localhost:{EX_PORT}/", level=1)
     else:  # 直接python起動
         if args.https == 1:
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.connect((args.test_connect, 80))
-            hostname = s.getsockname()[0]
             printMessage(f"https://localhost:{PORT}/", level=1)
-            printMessage(f"https://{hostname}:{PORT}/", level=1)
         else:
             printMessage(f"http://localhost:{PORT}/", level=1)
 

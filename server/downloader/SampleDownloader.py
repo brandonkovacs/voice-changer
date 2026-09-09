@@ -46,7 +46,10 @@ def _downloadSampleJsons(sampleJsonUrls: list[str]):
     sampleJsons = []
     for url in sampleJsonUrls:
         filename = os.path.basename(url)
-        download_no_tqdm({"url": url, "saveTo": filename, "position": 0})
+        if os.path.exists(filename):
+            logger.info(f"[Voice Changer] sample catalog is already exists. skip download. {filename}")
+        else:
+            download_no_tqdm({"url": url, "saveTo": filename, "position": 0})
         sampleJsons.append(filename)
     return sampleJsons
 
