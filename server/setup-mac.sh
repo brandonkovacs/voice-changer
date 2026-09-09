@@ -6,15 +6,18 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENV_NAME="vcclient"
+export CONDA_PLUGINS_AUTO_ACCEPT_TOS=yes
 
 echo "=== Voice-Changer macOS Setup ==="
 echo ""
 
 # Check if conda is available
 if ! command -v conda &> /dev/null; then
-    echo "Error: conda not found. Please install Miniconda or Anaconda first."
-    echo "Download from: https://docs.conda.io/en/latest/miniconda.html"
-    exit 1
+    echo "Error: conda not found. Installing..."
+    curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+    bash ./Miniconda3-latest-MacOSX-arm64.sh -p $HOME/miniconda3
+    source ~/miniconda3/bin/activate
+    conda init --all
 fi
 
 # Initialize conda for bash
